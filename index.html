@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabina Wardaniah - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* =========================================================
+           RESET & VARIABLE CONFIGURATION (DARK & PASTEL PALETTE)
+           ========================================================= */
+        :root {
+            --bg-main: #0f1117;
+            --bg-card: #181b24;
+            --bg-card-hover: #212533;
+            --border-color: rgba(255, 255, 255, 0.08);
+            
+            /* Pastel Accent Colors */
+            --pastel-purple: #c4b5fd;
+            --pastel-cyan: #a5f3fc;
+            --pastel-mint: #a7f3d0;
+            --pastel-pink: #fbcfe8;
+            --pastel-yellow: #fef08a;
+
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-dim: #6b7280;
+
+            --font-primary: 'Plus Jakarta Sans', sans-serif;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2e3d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--pastel-purple);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* =========================================================
+           NAVIGATION (STICKY GLASSMORPHISM)
+           ========================================================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 17, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--pastel-purple);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--pastel-purple);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.4rem;
+            color: var(--text-main);
+        }
+
+        /* =========================================================
+           HERO SECTION
+           ========================================================= */
+        #hero {
+            padding: 160px 0 90px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(196, 181, 253, 0.1);
+            border: 1px solid rgba(196, 181, 253, 0.2);
+            border-radius: 30px;
+            color: var(--pastel-purple);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--pastel-mint);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--pastel-mint);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-title .gradient-text {
+            background: linear-gradient(135deg, var(--pastel-purple), var(--pastel-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 36px;
+            max-width: 680px;
+            font-weight: 400;
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--pastel-purple);
+            color: #0f1117;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(196, 181, 253, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-left: 10px;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .social-icon:hover {
+            color: var(--pastel-cyan);
+            border-color: var(--pastel-cyan);
+            transform: translateY(-2px);
+        }
+
+        /* =========================================================
+           SECTIONS GENERAL
+           ========================================================= */
+        section {
+            padding: 90px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            margin-bottom: 50px;
+        }
+
+        .section-tag {
+            color: var(--pastel-cyan);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* =========================================================
+           ABOUT SECTION
+           ========================================================= */
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .about-text:last-child {
+            margin-bottom: 0;
+        }
+
+        /* =========================================================
+           EXPERIENCE SECTION (TIMELINE)
+           ========================================================= */
+        .timeline {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .timeline-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 28px;
+            transition: var(--transition-smooth);
+        }
+
+        .timeline-item:hover {
+            border-color: rgba(196, 181, 253, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .company-name {
+            color: var(--pastel-purple);
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-top: 2px;
+        }
+
+        .job-date {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+
+        .timeline-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .timeline-bullets li {
+            position: relative;
+            padding-left: 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .timeline-bullets li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--pastel-cyan);
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        /* =========================================================
+           PROJECTS & ACHIEVEMENTS GRID
+           ========================================================= */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition-smooth);
+        }
+
+        .project-card:hover {
+            border-color: rgba(165, 243, 252, 0.4);
+            transform: translateY(-4px);
+        }
+
+        .project-tag-item {
+            align-self: flex-start;
+            padding: 4px 12px;
+            background: rgba(165, 243, 252, 0.1);
+            color: var(--pastel-cyan);
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .project-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .metric-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--pastel-mint);
+            font-weight: 600;
+            font-size: 0.88rem;
+            background: rgba(167, 243, 208, 0.1);
+            padding: 6px 12px;
+            border-radius: 8px;
+            width: fit-content;
+        }
+
+        /* =========================================================
+           SKILLS & CERTIFICATIONS
+           ========================================================= */
+        .skills-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 24px;
+        }
+
+        .skill-category {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--pastel-purple);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .pill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            transition: var(--transition-smooth);
+        }
+
+        .pill:hover {
+            border-color: var(--pastel-purple);
+            background: rgba(196, 181, 253, 0.08);
+        }
+
+        /* Certifications List */
+        .cert-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .cert-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .cert-title {
+            font-weight: 600;
+            font-size: 0.98rem;
+            color: var(--text-main);
+        }
+
+        .cert-issuer {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .cert-date {
+            font-size: 0.8rem;
+            color: var(--pastel-pink);
+            font-weight: 500;
+        }
+
+        /* =========================================================
+           EDUCATION SECTION
+           ========================================================= */
+        .edu-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .edu-degree {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .edu-school {
+            color: var(--pastel-purple);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        .gpa-pill {
+            background: rgba(167, 243, 208, 0.12);
+            color: var(--pastel-mint);
+            border: 1px solid rgba(167, 243, 208, 0.3);
+            padding: 8px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        /* =========================================================
+           CONTACT & FOOTER
+           ========================================================= */
+        .contact-box {
+            background: linear-gradient(135deg, rgba(24, 27, 36, 1), rgba(33, 37, 51, 1));
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-box h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .contact-box p {
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.88rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* =========================================================
+           RESPONSIVE MOBILE STYLES
+           ========================================================= */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-main);
+                flex-direction: column;
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border-color);
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            #hero {
+                padding: 120px 0 60px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+
+            .social-links {
+                justify-content: center;
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">Sabina<span>.dev</span></a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#experience">Pengalaman</a></li>
+                <li><a href="#projects">Pencapaian</a></li>
+                <li><a href="#skills">Keterampilan</a></li>
+                <li><a href="#education">Pendidikan</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">
+                    <span class="badge-dot"></span> Terbuka untuk Peluang Kerja
+                </div>
+                <h1 class="hero-title">
+                    Halo, Saya <span class="gradient-text">Sabina Wardaniah</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Lulusan Ilmu Komputer yang berfokus pada <strong>Machine Learning</strong>, <strong>Web Development</strong>, dan <strong>Data Analysis</strong>. Berpengalaman membangun sistem AI end-to-end serta aplikasi web berbasis instansi pemerintahan.
+                </p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="far fa-envelope"></i> Hubungi Saya
+                    </a>
+                    <a href="#projects" class="btn btn-secondary">
+                        <i class="fas fa-code"></i> Lihat Portfolio
+                    </a>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/sabina-wardaniah-5757322ab" target="_blank" class="social-icon" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/sabinawrim" target="_blank" class="social-icon" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Ringkasan Utama</span>
+                <h2 class="section-title">Tentang Saya</h2>
+            </div>
+            <div class="about-card">
+                <p class="about-text">
+                    Lulusan Sarjana Ilmu Komputer dari Universitas Negeri Medan (IPK 3.70/4.00). Saya memiliki minat mendalam dalam mengembangkan berbagai solusi berbasis web dan teknologi informasi, pemodelan Machine Learning, hingga pengolahan pipeline data secara sistematis.
+                </p>
+                <p class="about-text">
+                    Terbiasa bekerja secara mandiri maupun berkolaborasi dalam tim, saya berkomitmen untuk menghadirkan dampak positif pada setiap proyek teknologi melalui analisis kritis, ketelitian, dan adaptabilitas terhadap tantangan baru.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Jejak Karir</span>
+                <h2 class="section-title">Pengalaman Kerja</h2>
+            </div>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="job-title">Machine Learning Developer</h3>
+                            <div class="company-name">Universitas Negeri Medan — Deli Serdang, Sumatera Utara</div>
+                        </div>
+                        <span class="job-date">Juli 2025 – Okt 2025</span>
+                    </div>
+                    <ul class="timeline-bullets">
+                        <li>Membangun dan merilis 3+ proyek Machine Learning & AI end-to-end (sistem rekomendasi film, pemodelan prediksi medis, dan pipeline data) mengimplementasikan algoritma supervised learning berbasis Python.</li>
+                        <li>Mengoptimalkan alur kerja deployment model dengan mengintegrasikan otomasi CI/CD via GitHub Actions serta pemantauan eksperimen menggunakan MLflow untuk menjamin konsistensi performa model.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="job-title">Web Developer (Magang/Praktik)</h3>
+                            <div class="company-name">Dinas Komunikasi dan Informatika (DISHUB/KOMINFO) Kab. Deli Serdang</div>
+                        </div>
+                        <span class="job-date">Jan 2025 – Feb 2025</span>
+                    </div>
+                    <ul class="timeline-bullets">
+                        <li>Merancang dan merilis aplikasi web internal untuk Divisi Sistem Pemerintahan Berbasis Elektronik (SPBE) guna mengoptimalkan efisiensi pengelolaan data operasional divisi.</li>
+                        <li>Melakukan analisis kebutuhan pengguna, perancangan antarmuka (UI/UX), arsitektur database MySQL/PostgreSQL, serta pengujian sistem (testing & debugging) untuk memastikan fungsionalitas dan keamanan sistem.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="job-title">Divisi Publikasi, Dekorasi, & Dokumentasi (PDD)</h3>
+                            <div class="company-name">Kuliah Kerja Nyata (KKN) UNIMED — Pakpak Bharat, Sumatera Utara</div>
+                        </div>
+                        <span class="job-date">Juli 2025 – Agu 2025</span>
+                    </div>
+                    <ul class="timeline-bullets">
+                        <li>Mengelola strategi komunikasi visual dan media digital program KKN untuk meningkatkan keterlibatan masyarakat dan visibilitas kegiatan program.</li>
+                        <li>Memproduksi puluhan materi publikasi digital (poster, pamflet, konten media sosial) serta dokumentasi video/foto dengan standar keterbacaan dan desain berbasis pengalaman pengguna (user experience).</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Riset & Prestasi</span>
+                <h2 class="section-title">Pencapaian & Publikasi</h2>
+            </div>
+            <div class="grid-2">
+
+                <div class="project-card">
+                    <div>
+                        <span class="project-tag-item">PUBLIKASI ILMIAH • 2024</span>
+                        <h3 class="project-title">Analisis Sentimen Publik Isu Revisi UU Pilkada 2024</h3>
+                        <p class="project-desc">
+                            Menerapkan metode Natural Language Processing (NLP) untuk menganalisis sentimen publik terhadap isu pembatalan revisi UU Pilkada di media sosial.
+                        </p>
+                    </div>
+                    <div class="metric-badge">
+                        <i class="fas fa-chart-line"></i> Akurasi Model: 92%
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <span class="project-tag-item">PUBLIKASI ILMIAH • 2025</span>
+                        <h3 class="project-title">Decision Support System Selection of Outstanding Students</h3>
+                        <p class="project-desc">
+                            Mengimplementasikan metode Profile Matching dalam Sistem Pendukung Keputusan Penilaian Siswa Berprestasi di SMKS Al-Washliyah 2 Merbau.
+                        </p>
+                    </div>
+                    <div class="metric-badge">
+                        <i class="fas fa-check-circle"></i> Profile Matching Method
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <span class="project-tag-item">PROGRAM PRESTASI • 2025</span>
+                        <h3 class="project-title">DBS Foundation Coding Camp 2025</h3>
+                        <p class="project-desc">
+                            Terpilih mengikuti pelatihan intensif Machine Learning, Soft Skills, Business English, dan Financial Literacy.
+                        </p>
+                    </div>
+                    <div class="metric-badge">
+                        <i class="fas fa-trophy"></i> Top 5% (3.000+ dari 63.000+ Pendaftar)
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Keahlian</span>
+                <h2 class="section-title">Keterampilan & Sertifikasi</h2>
+            </div>
+
+            <div class="skills-wrapper">
+                <div class="skill-box">
+                    <div class="skill-category">
+                        <i class="fas fa-code"></i> Hard Skills & Bahasa
+                    </div>
+                    <div class="pills">
+                        <span class="pill">Python</span>
+                        <span class="pill">HTML / CSS</span>
+                        <span class="pill">SQL (MySQL, PostgreSQL)</span>
+                        <span class="pill">Machine Learning</span>
+                        <span class="pill">Data Analysis</span>
+                        <span class="pill">Web Development</span>
+                    </div>
+                </div>
+
+                <div class="skill-box">
+                    <div class="skill-category">
+                        <i class="fas fa-tools"></i> Tools & Productivity
+                    </div>
+                    <div class="pills">
+                        <span class="pill">VS Code</span>
+                        <span class="pill">Google Colab</span>
+                        <span class="pill">GitHub Actions</span>
+                        <span class="pill">MLflow</span>
+                        <span class="pill">Git</span>
+                        <span class="pill">Google Workspace</span>
+                        <span class="pill">MS Office</span>
+                    </div>
+                </div>
+
+                <div class="skill-box">
+                    <div class="skill-category">
+                        <i class="fas fa-comments"></i> Bahasa & Soft Skills
+                    </div>
+                    <div class="pills">
+                        <span class="pill">Bahasa Indonesia (Native)</span>
+                        <span class="pill">Bahasa Inggris (Basic)</span>
+                        <span class="pill">Teamwork & Collaboration</span>
+                        <span class="pill">Critical Thinking</span>
+                        <span class="pill">Problem Solving</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cert-list">
+                <div class="cert-item">
+                    <div>
+                        <div class="cert-title">Teknologi Informasi & Komunikasi - Machine Learning Engineer</div>
+                        <div class="cert-issuer">Dicoding Coding Camp powered by DBS Foundation</div>
+                    </div>
+                    <span class="cert-date">Feb 2025 – Juli 2025</span>
+                </div>
+                <div class="cert-item">
+                    <div>
+                        <div class="cert-title">Machine Learning Engineer</div>
+                        <div class="cert-issuer">Coding Camp powered by DBS Foundation</div>
+                    </div>
+                    <span class="cert-date">Berlaku: 2025 – 2028</span>
+                </div>
+                <div class="cert-item">
+                    <div>
+                        <div class="cert-title">Membangun Sistem Machine Learning</div>
+                        <div class="cert-issuer">Dicoding</div>
+                    </div>
+                    <span class="cert-date">Berlaku: 2025 – 2028</span>
+                </div>
+                <div class="cert-item">
+                    <div>
+                        <div class="cert-title">English for Business Communication</div>
+                        <div class="cert-issuer">TBI Bandung</div>
+                    </div>
+                    <span class="cert-date">Berlaku: 2025 – 2028</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Latar Belakang</span>
+                <h2 class="section-title">Pendidikan</h2>
+            </div>
+            <div class="edu-card">
+                <div>
+                    <div class="edu-degree">S1 Ilmu Komputer</div>
+                    <div class="edu-school">Universitas Negeri Medan, Sumatera Utara (2022 – 2026)</div>
+                </div>
+                <div class="gpa-pill">
+                    IPK: 3.70 / 4.00
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="contact-box">
+                <h2>Mari Bekerja Sama!</h2>
+                <p>Saya selalu terbuka untuk diskusi mengenai peluang karir, proyek Machine Learning, maupun kolaborasi pengembangan web.</p>
+                <a href="mailto:sabinawardaniah@gmail.com" class="btn btn-primary">
+                    <i class="far fa-paper-plane"></i> Kirim Email
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Sabina Wardaniah. Built with HTML, CSS, & JS. Ready for GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close Mobile Menu on Link Click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
